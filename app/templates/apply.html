@@ -1,0 +1,53 @@
+{% extends 'dbase.html' %}
+{% block title %}
+ Apply now - Codedev
+{% endblock title %}
+{% block message %}
+<style>
+     input{
+        border: none;
+        outline: none;
+        font-size: smaller;
+        border-bottom: 1px solid ;
+     }
+     label{
+        font-size: smaller;
+     }
+</style>
+<section class="py-5">
+    <div class="container">
+        <div class="h4">JOB APPLICATION</div>
+        <div style="font-size: smaller;">{{job.company_name}}</div>
+        <div>Role - {{job.role}}</div>
+        <!--Form-->
+        <div class="mt-4">
+            <div class="h5">Apply Now!!!</div>
+          <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="mb-3">
+                <label for="">Firstname</label><br>
+                <input type="text" name="first_name" id="">
+            </div>
+            <div class="mb-3">
+                <label for="">Lastname</label><br>
+                <input type="text" name="last_name" id="">
+            </div>
+            <div class="mb-3">
+                <label for="">Email Address</label><br>
+                <input type="text" name="email" id="">
+            </div>
+            <div class="mb-3">
+                <label for="">Portfolio (Website Link)</label><br>
+                <input type="url" name="portfolio" id="">
+            </div>
+            <div class="mb-3">
+                <label for="">Resume/CV</label><br>
+                <input type="file" accept=".pdf, .docx" name="resume" id="">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-sm btn-success">Submit</button>
+            </div>
+          </form>
+        </div>
+    </div>
+</section>
+{% endblock message %}

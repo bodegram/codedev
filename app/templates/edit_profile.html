@@ -1,0 +1,58 @@
+{% extends 'dbase.html' %}
+{% block title %}
+Edit Profile - Codedev
+{% endblock title %}
+{% block message %}
+<style>
+    input{
+       border: none;
+       outline: none;
+       font-size: smaller;
+       border-bottom: 1px solid ;
+    }
+    select{
+       border: none;
+       outline: none;
+       font-size: smaller;
+       border-bottom: 1px solid ;
+       background-color: transparent;
+    }
+    label{
+       font-size: smaller;
+    }
+</style>
+<section class="py-4">
+    <div class="container">
+        <div class="h5">Edit Profile</div>
+        <form action="" method="post">
+            <div class="mb-3">
+                <label for="">Firstname</label><br>
+                <input type="text" name="first_name" value="{{user.first_name}}" id="">
+            </div>
+            <div class="mb-3">
+                <label for="">Lastname</label><br>
+                <input type="text" name="first_name" value="{{user.last_name}}" id="">
+            </div>
+            <div class="mb-3">
+                <label for="">Gender</label><br>
+                <select>
+                     <option value=""></option>
+                     <option value="">Male</option>
+                     <option value="">Female</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="">Billing Address</label><br>
+                <input type="text" name="billing_address" value="{{user.billing_address}}" id="">
+            </div>
+            <div class="mb-3">
+                <label for="">Specialization</label><br>
+                <input type="text" name="first_name" id="">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-sm btn-success text-light">Save</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock message %}

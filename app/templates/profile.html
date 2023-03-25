@@ -1,0 +1,40 @@
+{% extends 'dbase.html' %}
+{% block title %}
+Profile - Codedev
+{% endblock title %}
+{% block message %}
+<section class="py-5">
+    <div class="container">
+        <div class="h5">My Account</div>
+        <div class="h5" style="font-size: medium;">{{user.first_name}} {{user.last_name}} - Profile <span><a href="{% url 'edit_profile' %}" class="btn btn-sm btn-warning">Edit Profile</a></span></div>
+        <div class="mb-3">
+            <div style="font-weight: bold;">Firstname</div>
+            <div style="font-size: smaller;">{{user.first_name}}</div>
+        </div>
+        <div class="mb-3">
+            <div style="font-weight: bold;">Lastname</div>
+            <div style="font-size: smaller;">{{user.last_name}}</div>
+        </div>
+        <div class="mb-3">
+            <div style="font-weight: bold;">Username</div>
+            <div style="font-size: smaller;">{{user.username}}</div>
+        </div>
+        <div class="mb-3">
+            <div style="font-weight: bold;">Email Address</div>
+            <div style="font-size: smaller;">{{user.email}}</div>
+        </div>
+        <div class="mb-3">
+            <div style="font-weight: bold;">Gender</div>
+            <div style="font-size: smaller;">{{user.gender}}</div>
+        </div>
+        <div class="mb-3">
+            <div style="font-weight: bold;">Billing Address</div>
+            <div style="font-size: smaller;">{{user.billing_address}}</div>
+        </div>
+        <div class="mb-3">
+            <div style="font-weight: bold;">Specialization</div>
+            <div style="font-size: smaller;">{{user.specialization}}</div>
+        </div>
+    </div>
+</section>
+{% endblock message %}

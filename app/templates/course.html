@@ -1,0 +1,50 @@
+{% extends 'dbase.html' %}
+{% block title %} 
+{{course.title}}- Codedev
+{% endblock title %}
+{% block message %}
+<section class="py-5">
+    <div class="container">
+     <div class="row">
+        <div class="col-sm-3">
+             
+        </div>
+        <div class="col-sm-6">
+           <div class="h5 text-center">{{course.title}}</div>
+           <div class="card">
+            <div class="card-body">
+                <div style="font-weight: bold;">{{course | title}} Topics</div><hr>
+                {% if topics %}
+                {% for topic in topics %}
+                <div><span>{{forloop.counter}}.</span> {{topic}} <span class="float-end btn btn-sm btn-warning text-light" id="{{topic.id}}">view</span></div>
+                <div class="d-flex mt-4" id="">
+                    <div>
+
+                        <video src="{{ MEDIA_URL }}{{topic.video}}"></video>
+                    
+                    </div>
+                  <div style="font-size: smaller;margin-left: 7px;">{{topic.description}}</div>
+                </div>
+                <hr>
+                {% endfor %}
+                {% else %}
+                <div>No topic available</div>
+                {% endif %}
+
+            </div>
+           </div>
+        </div>
+        <script>
+            var topic = document.getElementById("{{topic.id}}")
+            topic.addEventListener("click", function(){
+                topic.style.display = ""
+            })
+        </script>
+        <div class="col-sm-3">
+            <div>Related Courses</div>
+        </div>
+     </div>
+    </div>
+</section>
+{% endblock message %}
+

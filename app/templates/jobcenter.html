@@ -1,0 +1,73 @@
+{% extends 'dbase.html' %}
+{% block title %}
+ Job Center - Codedev
+{% endblock title %}
+{% block message %}
+<section class="py-3">
+    <div class="container">
+        <div class="h4 text-center">JOB CENTER</div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div>
+            <form action="" method="post">
+                <input type="search" name="" style="outline: none;" placeholder="Search Jobs" id="">
+                <button type="submit" class="btn btn-md btn-warning">Search</button>
+            </form>
+        </div>
+       <div class="py-4">
+        <div class="float-start">View Jobs ({{job_count}})</div>
+        <div class="float-end">
+            <button class="btn btn-md btn-warning" id="postJob">Post Jobs</button>
+        </div>
+       </div>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container">
+        {% if jobs %}
+        {% for job in jobs %}
+        <div class="card text-dark">
+            <div class="card-body">
+              <div class="float-start">
+                <div style="font-size: smaller;" class="badge bg-success">{{job.company_name}}</div>
+                <div class="card-title">{{forloop.counter}}. {{job.role}} - {{job.country}}</div>
+              </div>
+               <div class="float-end"><a href="{% url 'job' job.id %}" class="btn btn-sm btn-warning text-light">View</a></div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div>No available job</div>
+        {% endif %}
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="text-center">
+           <div>
+              {{jobs.number}} of {{jobs.paginator.num_pages}}
+           </div>
+           <div>
+            <a href="?page=1" class="btn btn-sm btn-warning text-light">&laquo</a>
+            {% if jobs.has_previous %}
+            <a href="?page={{job.previous_page_number}}" class="btn btn-sm btn-warning text-light">prev</a>
+            {% endif %}
+            {% if jobs.has_next %}
+            <a href="?page={{job.next_page_number}}" class="btn btn-sm btn-warning text-light">next</a>
+            {% endif %}
+            <a href="?page={{jobs.paginator.num_pages}}" class="btn btn-sm btn-warning text-light">&raquo</a>
+           </div>
+
+
+        </div>
+    </div>
+</section>
+<script>
+    const postJob = document.getElementById("postJob")
+    postJob.addEventListener("click", function(){
+        window.location = "post"
+    })
+</script>
+{% endblock message %}

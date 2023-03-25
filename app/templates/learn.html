@@ -1,0 +1,52 @@
+{% extends 'dbase.html' %}
+{% block title %}
+Learn - Codedev
+{% endblock title %}
+{% block message %}
+<section class="py-5">
+    <div class="container">
+    <div class="h5 mb-3">Available Courses ({{course_count}})</div>
+         {% if courses %}
+          <div class="row">
+            {% for course in courses %}
+              <div class="col-sm-3">
+                <div class="card">
+                    <img src="" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <div class="card-title">{{course.title}}</div>
+                        <div class="card-text" style="font-size: smaller;">{{course.description | truncatewords:12}}</div>
+                        <div class="mt-2">
+                            <a href="{% url 'course' course.id %}" class="btn btn-sm btn-warning text-light">Preview Course</a>
+                        </div>
+
+                    </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+         {% else %}
+         <div>No course available</div>
+         {% endif %}
+    </div>
+</section>
+<section class="py-5">
+    <div class="container">
+       {% if courses %}
+         <div class="text-center">
+            <div>{{courses.number}} of  {{courses.paginator.num_pages}}</div>
+            <div>
+                <a href="?page=1" class="btn btn-sm btn-warning text-light" style="text-decoration: none; padding-right: 7px;">&laquo </a>
+                {% if courses.has_previous %}
+                <a href="?page={{courses.previous_page_number}}" class="btn btn-sm btn-warning text-light" style="text-decoration: none;padding-right: 7px;">prev</a>
+                {% endif %}
+                {% if courses.has_next %}
+                <a href="?page={{courses.next_page_number}}" class="btn btn-sm btn-warning text-light" style="text-decoration: none; padding-right: 7px;">next</a>
+                {% endif %}
+                <a href="?page={{courses.paginator.num_pages}}" class="btn btn-sm btn-warning text-light" style="text-decoration: none; padding-right: 7px;">&raquo </a>
+            </div>
+         </div>
+       {% endif %}
+    </div>
+</section>
+{% endblock message %}
+

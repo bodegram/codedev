@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}
+{{course}} - Codedev
+{% endblock title %}
+{% block message %}
+<section class="py-5 bg-dark text-light">
+    <div class="container h4 mb-5 bg-dark text-light">{{course.specialization | upper}}</div>
+</section>
+<section class="container-fluid py-5">
+        <div class="row">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-6">
+                <div class="">
+                    <div style="font-size: medium;display: flex;" class="py-2">
+                        <div><i class="bi bi-person-circle" style="font-size: 35px;"></i></div>
+                        <div style="margin-left: 7px;">
+                            <div style="font-weight: bold;">{{course.author}}</div>
+                            <div>Posted on {{course.dateupdate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="h5 py-5 bg-dark text-light text-center">
+                  <div>
+                    {{course.title | upper}}
+                  </div>
+                </div>
+                 <div class="pb-5">
+                    <div style="font-weight: 500; font-family: sans-serif;">
+                        {{course.details1}}
+                    </div>
+                 </div>
+                 <div>
+                    <img src="{{course.image.url}}" class="img-fluid" alt="">
+                 </div>
+                 <div class="text-center py-5 mt-3" style="background-color: black; color:white">
+                    <a href="" class="btn btn-md bg-primary text-light">TAKE COURSE FOR FREE</a>
+                </div>
+                <div class="py-5" style="font-weight: 500; font-family: sans-serif;">
+                    {{course.details2}}
+                 </div>
+                   
+                 <div class="py-3">
+                    <div>LIKE THIS POST</div>
+                    <div><span><i class="bi bi-hand-thumbs-up"></i></span> <span style="margin-left: 10px;"><i class="bi bi-hand-thumbs-down"></i></span></div>
+                 </div>
+
+            </div>
+            <div class="col-sm-3">
+                <div>Comment on post</div>
+                {% if messages %}
+                {% for message in messages %}
+                <div>{{message}}</div>
+                {% endfor %}
+                {% else %}
+                {% endif %}
+                <form action="{% url 'addComment' course.slug  %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="comment" placeholder="Write a comment.." class="form-control w-75 rounded-pill float-start" id="">
+                    <button type="submit" class="mt-1 float-end bg-dark text-light" style="outline: none;border: none;">Send</button>
+                </form>
+                  <br><br>
+                <div class="mt-2">
+                    <div>{{count}}  {% if comments %} comments {% else %} comment {% endif %}</div>
+                    <div>
+                        {% if comments %}
+                        {% for comment in comments %}
+                         <div class="mb-2">
+                            <div class="card bg-light rounded-pill" style="border: none;">
+                                <div class="card-body">
+                                    <div style="font-weight: bold;">{{comment.user}}</div>
+                                    {{comment.comment}}
+    
+                                </div>
+                             </div>
+                             <form action="{% url 'addCommentLike' comment.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" style="background: none;border:none">Like</button>
+                               </form>
+                         </div>
+                        {% endfor %}
+                        {% else %}
+                         <div>Be the first to comment...</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</section>
+{% endblock message %}

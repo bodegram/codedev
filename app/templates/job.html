@@ -1,0 +1,46 @@
+{% extends 'dbase.html' %}
+{% block title %}
+ {{job.role}} | Job Center - Codedev
+{% endblock title %}
+{% block message %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="h4">JOB CENTER</div>
+                <div class="mb-2">
+                    <a href="{% url 'apply' job.id %}" class="btn btn-sm btn-warning text-light">Apply now</a>
+                </div>
+        <div style="font-size: smaller;">{{job.company_name}}</div>
+        <div>{{job.role}} <span class="badge bg-success">{{job.country}}</span></div>
+        <!--Company Information-->
+        <div class="py-3">
+          <div style="font-weight: bold;">Organization Information</div>
+          <div style="font-size: smaller;">Name: {{job.company_name}}</div>
+          <div  style="font-size: smaller;">Address: {{job.address}}</div>
+          <div  style="font-size: smaller;">Country: {{job.country}}</div>
+          <div  style="font-size: smaller;">Website: <a href="{{job.webiste | urlize }}" target="_blank">{{job.website | urlize }}</a></div>
+        </div>
+        <div class="py-3">
+          <div style="font-weight: bold;" class="mb-2">Job Information</div>
+        <div class="py-2">
+            <div style="font-weight: bold;">Role</div>
+            <div  style="font-size: smaller;">{{job.role}}</div>
+        </div>
+        <div class="py-2">
+            <div style="font-weight: bold;">Work Experience</div>
+            <div  style="font-size: smaller;">{{job.work_experience}}</div>
+        </div>
+        <div class="py-2">
+            <div style="font-weight: bold;">Requirements</div>
+            <div  style="font-size: smaller;">{{job.requirement | safe}}</div>
+        </div>
+        <div class="py-2">
+            <div style="font-weight: bold;">Job Description</div>
+            <div  style="font-size: smaller;">{{job.job_description}}</div>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock message %}

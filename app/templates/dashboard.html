@@ -1,0 +1,11 @@
+{% extends 'dbase.html' %}
+{% block title %}
+ My Account - Codedev
+{% endblock title %}
+{% block message %}
+<section class="py-3">
+    <div class="container">
+        <div><span>Welcome back, {{user.first_name}}</span></div>
+    </div>
+</section>
+{% endblock message %}

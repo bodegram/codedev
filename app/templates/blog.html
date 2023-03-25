@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+ Blog - Codedev
+{% endblock title %}
+{% block message %}
+<section class="py-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                
+            </div>
+            <div class="col-sm-6">
+                <div class="h5 mb-3">BLOG POSTS</div>
+                <div>
+                    {% if specializations %}
+                    {% for specialization in specializations %}
+                    <div class="card mb-5">
+                        <img src="{{specialization.image.url}}" class="card-img-top" alt="">
+                        <div class="card-body">
+                              <div style="font-weight: bold;">{{specialization.title}}</div>
+                              <div style="font-size: small;">{{specialization.details1 | truncatewords:30}} <a href="{% url 'course' specialization.slug %}"  style="text-decoration: none;">Read more</a></div>
+                        </div>
+                        <div class="card-footer">
+                          <div style="font-size: small;">Last updated on {{specialization.dateupdate}} by {{specialization.author}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div>No post available</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="h5 mb-3">Related Post ({{specializations.count}})</div>
+                <div>
+                    {% if specialization %}
+                    {% for specialization in specializations %}
+                    <div class="mb-2">
+                        <span>{{forloop.counter}}.</span> <a href="{% url 'blog_details' specialization.slug %}" class="text-dark" style="margin-bottom: 10px;">{{specialization.title}}</a>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div>Empty</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock message %}
